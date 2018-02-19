@@ -8,7 +8,7 @@ button.onclick = function(){
     var request = new XMLHttpRequest();
     
     request.onreadystatechange = function(){
-        if(requestraedystate === XMLHttpRequest.DONE){
+        if(request.readyState === XMLHttpRequest.DONE){
             if(request.status === 200){
                     //Increment the view count
                     var count = request.responseText;
