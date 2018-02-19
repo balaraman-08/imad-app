@@ -4,7 +4,7 @@ var button = document.getElementById('counter');
 
 button.onclick = function(){
     
-    //Make the http request
+    //Create the http request
     var request = new XMLHttpRequest();
     
     request.onreadystatechange = function(){
@@ -18,5 +18,7 @@ button.onclick = function(){
         }
     }
     
-
+    //Make the request
+    request.OPEN('GET', "http://balaramanmuthupandi.imad.hasura-app.io/", true);
+    request.send(null);
 }
