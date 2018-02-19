@@ -112,7 +112,7 @@ var count = 0;
 
 app.get('/counter', function (req, res) {
     count = count+1;
-    res.send(count);
+    res.send(count.toString());
 });
 
 app.get('/ui/main.js', function(req, res){
