@@ -110,7 +110,7 @@ app.get('/ui/style.css', function (req, res) {
 
 var count = 0;
 
-app.get('http://balaramanmuthupandi.imad.hasura-app.io/counter', function (req, res) {
+app.get('/balaramanmuthupandi.imad.hasura-app.io/counter', function (req, res) {
     count = count+1;
     res.send(count.toString());
 });
