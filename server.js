@@ -112,8 +112,8 @@ app.get('/ui/main.js', function(req, res){
    res.sendFile(path.join(__dirname, 'ui', 'main.js')); 
 });
 
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+app.get('/https://scontent.fmaa2-1.fna.fbcdn.net/v/t1.0-9/22154512_2088867071349076_4417509259227904674_n.jpg?oh=bed37812bf6ad27de3eab7cd32255562&oe=5B0F2E4F', function (req, res) {
+  res.sendFile(path.join(__dirname, 'https://scontent.fmaa2-1.fna.fbcdn.net/v/t1.0-9/22154512_2088867071349076_4417509259227904674_n.jpg?oh=bed37812bf6ad27de3eab7cd32255562&oe=5B0F2E4F'));
 });
 
 
