@@ -20,6 +20,6 @@ button.onclick = function(){
     }
     
     //Make the request
-    request.open('GET', "/balaramanmuthupandi.imad.hasura-app.io/counter", true);
+    request.open('GET', "/counter", true);
     request.send(null);
 }
