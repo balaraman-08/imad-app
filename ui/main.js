@@ -47,7 +47,7 @@ submit.onclick = function(){
         }
     };
     //Requesting the name
-    request.open('GET', "/submit/"+name, true);
+    request.open('GET', "/submit?name="+name, true);
     request.send(null);
 
 };
