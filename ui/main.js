@@ -26,7 +26,7 @@ button.onclick = function(){
     request.send(null);
 };
 
-body.onload = function(){
+window.onload = function(){
         request.onreadystatechange = function(){
         if(request.readyState === XMLHttpRequest.DONE){
             if(request.status === 200){
