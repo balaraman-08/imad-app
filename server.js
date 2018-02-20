@@ -133,7 +133,7 @@ app.get('/submit/:name', function(req, res){
    names.push(name);
    
    //Respond with JSON
-   res.send(JSON.Stringify(names));
+   res.send(JSON.stringify(names));
     
 });
 
