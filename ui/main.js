@@ -22,9 +22,9 @@ window.onload = function(){
 var submit = document.getElementById('submit');
 var ul = document.getElementById('namelist');
 var name_input = document.getElementById('name');
+var names = [];
 
 submit.onclick = function(){
-    var names = [];
     names[names.length] = name_input.value;
     var list = "";
     for(var i = 0; i<names.length; i++){
