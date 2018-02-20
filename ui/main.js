@@ -51,7 +51,7 @@ submit.onclick = function(){
     request.send(null);
 };
 
-window.onclick = function(){
+window.onload = function(){
         var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
         if(request.readyState === XMLHttpRequest.DONE){
