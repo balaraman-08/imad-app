@@ -50,6 +50,5 @@ submit.onclick = function(){
     var name = name_input.value;
     console.log(name);
     request.open('GET', "http://balaramanmuthupandi.imad.hasura-app.io/submit?name="+name, true);
-    request.send(null);
 
 };
