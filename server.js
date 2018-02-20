@@ -124,6 +124,8 @@ app.get('/ui/bala.jpg', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'bala.jpg'));
 });
 
+var names = [];
+
 app.get('/submit/:name', function(req, res){
    
    //Getting the name
