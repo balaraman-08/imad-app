@@ -32,7 +32,7 @@ submit.onclick = function(){
         if(request.readyState === XMLHttpRequest.DONE){
             if(request.status === 200){
                     //Increment the view count
-                        var name = name_input.value;
+                        
                         var nameJSON = request.responseText;
                         var names = JSON.parse(nameJSON);
                         request.send(null);
@@ -47,6 +47,7 @@ submit.onclick = function(){
         }
     };
     //Requesting the name
+    var name = name_input.value;
     request.open('GET', "http://balaramanmuthupandi.imad.hasura-app.io/submit?name="+name, true);
     request.send(null);
 
