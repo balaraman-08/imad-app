@@ -126,10 +126,10 @@ app.get('/ui/bala.jpg', function (req, res) {
 
 var names = [];
 
-app.get('/submit/:name', function(req, res){
+app.get('/submit', function(req, res){
    
    //Getting the name
-   var name = req.params.name;
+   var name = req.query.name;
    names.push(name);
    
    //Respond with JSON
