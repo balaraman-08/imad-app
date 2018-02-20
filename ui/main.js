@@ -22,7 +22,6 @@ window.onload = function(){
 
 var submit = document.getElementById('submit');
 var ul = document.getElementById('namelist');
-var name_input = document.getElementById('name');
 var names = [];
 
 submit.onclick = function(){
@@ -47,7 +46,9 @@ submit.onclick = function(){
         }
     };
     //Requesting the name
+    var name_input = document.getElementById('name');
     var name = name_input.value;
+    console.log(name);
     request.open('GET', "http://balaramanmuthupandi.imad.hasura-app.io/submit?name="+name, true);
     request.send(null);
 
