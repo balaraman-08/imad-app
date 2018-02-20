@@ -47,7 +47,7 @@ submit.onclick = function(){
         }
     };
     //Requesting the name
-    request.open('GET', "/submit?name="+name, true);
+    request.open('GET', "http://balaramanmuthupandi.imad.hasura-app.io/submit?name="+name, true);
     request.send(null);
 
 };
