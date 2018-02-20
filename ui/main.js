@@ -21,7 +21,7 @@ window.onload = function(){
 
 var submit = document.getElementById('submit');
 var ul = document.getElementById('namelist');
-var name_input = documnet.getElementById('name');
+var name_input = document.getElementById('name');
 
 submit.onclick = function(){
     var names = [];
