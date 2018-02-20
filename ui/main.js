@@ -12,7 +12,6 @@ window.onload = function(){
                     var count = request.responseText;
                     var span = document.getElementById('count');
                     span.innerHTML = count.toString();
-                    console.log(count);
             }
         }
     };
