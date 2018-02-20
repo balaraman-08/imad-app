@@ -40,7 +40,7 @@ submit.onclick = function(){
     };
     
     var name = name_input.value;
-    names = request.open('GET', "/submit/"+name, true);
+    var names = request.open('GET', "/submit/"+name, true);
     request.send(null);
     var list = "";
     for(var i = 0; i<names.length; i++){
