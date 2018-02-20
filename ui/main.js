@@ -2,10 +2,12 @@ console.log('Loaded!');
 
 var button = document.getElementById('counter');
 
+var request = new XMLHttpRequest();
+
 button.onclick = function(){
     
     //Create the http request
-    var request = new XMLHttpRequest();
+    
     
     request.onreadystatechange = function(){
         if(request.readyState === XMLHttpRequest.DONE){
@@ -17,9 +19,14 @@ button.onclick = function(){
                     console.log(count);
             }
         }
-    }
+    };
     
     //Make the request
     request.open('GET', "/counter", true);
     request.send(null);
-}
+};
+
+body.onload = function(){
+    request.open('GET', "/counter", true);
+    request.send(null);   
+};
