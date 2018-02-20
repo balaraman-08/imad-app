@@ -106,6 +106,20 @@ app.get('/counter', function (req, res) {
     res.send(count.toString());
 });
 
+
+var names = [];
+
+app.get('/submit', function(req, res){
+   
+   //Getting the name
+   var name = req.query.name;
+   names.push(name);
+   
+   //Respond with JSON
+   res.send(JSON.stringify(names));
+    
+});
+
 app.get('/:articleName', function(req, res){
     var articleName = req.params.articleName;
         res.send(createTemplate(articles[articleName]));
@@ -124,18 +138,6 @@ app.get('/ui/bala.jpg', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'bala.jpg'));
 });
 
-var names = [];
-
-app.get('/submit', function(req, res){
-   
-   //Getting the name
-   var name = req.query.name;
-   names.push(name);
-   
-   //Respond with JSON
-   res.send(JSON.stringify(names));
-    
-});
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
