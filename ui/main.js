@@ -25,7 +25,9 @@ var name_input = document.getElementById('name');
 var names = [];
 
 submit.onclick = function(){
-    names[names.length] = name_input.value;
+    var name = name_input.value;
+    names = request.open('GET', "/submit/"+name, true);
+    request.send(null);
     var list = "";
     for(var i = 0; i<names.length; i++){
         list += '<li>' + names[i] + '</li>';
