@@ -97,7 +97,7 @@ return template;
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+  var XMLHttpRequest = require('xhr2');
   var request = new XMLHttpRequest();
   request.open('GET', "/counter", true);
   request.send(null);
