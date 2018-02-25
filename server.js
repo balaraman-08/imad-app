@@ -73,6 +73,26 @@ app.get('/test-db', function(req, res){
     });
 });
 
+app.get('/:articleName', function(req, res){
+    console.log(req.params.articleName);
+    pool.query('SELECT * FROM article WHERE title = $1', [req.params.articleName], function(err, result){
+        if (err){
+            console.log(req.params.articleName + "error");
+            res.status(500).send(err.toString());
+        }
+        else{
+            if (result.rows === 0){
+                console.log(req.params.articleName + "not found error");
+                res.status(404).send('Article not found');
+            }
+            else{
+                var articledata = result.rows[0];
+                res.send(createTemplate(articledata));
+                console.log(req.params.articleName + "success");
+            }
+        }
+    });
+});
 
 var count = 0;
 
@@ -93,27 +113,6 @@ app.get('/submit', function(req, res){
    //Respond with JSON
    res.send(JSON.stringify(names));
     
-});
-
-app.get('/:articleName', function(req, res){
-    console.log(req.params.articleName);
-    pool.query('SELECT * FROM article WHERE title = $1', [req.params.articleName], function(err, result){
-        if (err){
-            console.log(req.params.articleName + "error");
-            res.status(500).send(err.toString());
-        }
-        else{
-            if (result.rows === 0){
-                console.log(req.params.articleName + "not found error");
-                res.status(404).send('Article not found');
-            }
-            else{
-                var articledata = result.rows[0];
-                res.send(createTemplate(articledata));
-                console.log(req.params.articleName + "success");
-            }
-        }
-    });
 });
 
 app.get('/ui/style.css', function (req, res) {
