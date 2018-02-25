@@ -152,16 +152,16 @@ app.get('/:articleName', function(req, res){
         if (err){
             res.status(500).send(err.toString());
         }
-        else if (result.rows === 0){
-            res.status(404).send('Article not found');
-        }
         else{
+            if (result.rows === 0){
+                res.status(404).send('Article not found');
+            }
+            else{
                 var articledata = result.rows[0];
                 res.send(createTemplate(articledata));
+            }
         }
     });
-    
-
 });
 
 app.get('/ui/style.css', function (req, res) {
