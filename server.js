@@ -123,6 +123,7 @@ app.get('/test-db', function(req, res){
     });
 });
 
+
 var count = 0;
 
 app.get('/counter', function (req, res) {
@@ -146,7 +147,21 @@ app.get('/submit', function(req, res){
 
 app.get('/:articleName', function(req, res){
     var articleName = req.params.articleName;
-        res.send(createTemplate(articles[articleName]));
+    
+    pool.query('SELECT * FROM article WHERE title = $1', [req.params.articleName], function(err, result){
+        if (err){
+            res.status(500).send(err.toString());
+        }
+        else if (result.rows === 0){
+            res.status(404).send('Article not found');
+        }
+        else{
+                var articledata = result.rows[0];
+                res.send(createTemplate(articles[articledata]));
+        }
+    });
+    
+
 });
 
 app.get('/ui/style.css', function (req, res) {
