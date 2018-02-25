@@ -109,19 +109,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var pool = new Pool(config);
+// var pool = new Pool(config);
 
-app.get('/test.db', function(req, res){
-    //querying the data
-    pool.query('SELECT * FROM user', fuction(err, result) {
-        if(err){
-            res.status('550').send(err.toString());
-        } else {
-            res.send(JSON.stringify(result));
-        }
-        
-    });
-});
+// app.get('/test.db', function(req, res){
+//     //querying
+// });
 
 var count = 0;
 
