@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
 
 var config = {
     user: 'balaramanmuthupandi',
@@ -71,6 +72,18 @@ app.get('/test-db', function(req, res){
             res.send(JSON.stringify(result.rows[0].name));
         }
     });
+});
+
+//Hashing
+
+function hash(input, salt){
+    var hashedString = crypto.pbdf2sync(input, salt, 10000, 512, 'sha512');
+    return hashedString.toString('hex');
+}
+
+app.get('/hash/:password', function(req, res){
+   var hashedPassword = hash(req.params.password, "Empty string");
+   res.send(hashedPassword);
 });
 
 app.get('/articles/:articleName', function(req, res){
