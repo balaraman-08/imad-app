@@ -3,7 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
-var bodyParser = require('bodyParser');
+var bodyParser = require('body-parser');
 
 var config = {
     user: 'balaramanmuthupandi',
@@ -16,7 +16,7 @@ var config = {
 
 var app = express();
 app.use(morgan('combined'));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 function createTemplate(data) {
 
@@ -89,21 +89,21 @@ app.get('/hash/:password', function(req, res){
 });
 
 //Creating user with password
-// app.post('/create-user', function(req, res){
-//   var name = req.body.username;
-//   var password = req.body.password;
-//   var salt = crypto.RandomBytes(128).toString('hex');
-//   var dbString = hash(password, salt);
-//   pool.query('INSERT INTO "user2" (username, password) VALUES ($1, $2)', [name, dbString], function(err, result){
-//       if(err){
-//           res.status(500).send(err.toString);
-//       }
-//       else{
-//           res.send("User created successfully: " + name);
-//       }
-//   });
+app.post('/create-user', function(req, res){
+  var name = req.body.username;
+  var password = req.body.password;
+  var salt = crypto.RandomBytes(128).toString('hex');
+  var dbString = hash(password, salt);
+  pool.query('INSERT INTO "user2" (username, password) VALUES ($1, $2)', [name, dbString], function(err, result){
+      if(err){
+          res.status(500).send(err.toString);
+      }
+      else{
+          res.send("User created successfully: " + name);
+      }
+  });
    
-// });
+});
 
 app.get('/articles/:articleName', function(req, res){
     console.log(req.params.articleName);
