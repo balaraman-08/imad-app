@@ -4,6 +4,7 @@ var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var config = {
     user: 'balaramanmuthupandi',
@@ -17,6 +18,10 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(session ({
+    secret: 'SomeValue', 
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}
+}));
 
 function createTemplate(data) {
 
@@ -123,6 +128,8 @@ app.post('/login', function(req, res){
               var salt = dbString.split('$')[2];
               var hashedPassword = hash(password, salt); //Cresting hash based password given at login time
               if(hashedPassword === dbString){
+                  //Setting session
+                  req.session.auth = {userId:  result.rows[0].id};
                   res.send("Login successful");
               }
               else{
@@ -132,6 +139,22 @@ app.post('/login', function(req, res){
           res.send("User created successfully: " + name);
       }
   });
+});
+
+//Checking session
+app.get('/check-login', function(req, res){
+   if (req.session && req.session.auth && req.session.auth.userId){
+       res.send("Logged in" + req.session.auth.userId.toString());
+   } 
+   else{
+       res.send("You're logged out");
+   }
+});
+
+//Log out
+app.get('/logout', function(req, res){
+   delete req.session.auth;
+   res.send("Logged out");
 });
 
 app.get('/articles/:articleName', function(req, res){
