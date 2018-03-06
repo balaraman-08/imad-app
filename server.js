@@ -130,7 +130,8 @@ app.post('/login', function(req, res){
               if(hashedPassword === dbString){
                   //Setting session
                   req.session.auth = {userId:  result.rows[0].id};
-                  res.send("Login successful" + req.session.auth.userId.toString());
+                  res.send("Login successful");
+                  console.log('Logged in');
               }
               else{
                   res.status(403).send("Username or password is incorrect");
