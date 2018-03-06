@@ -129,8 +129,8 @@ app.post('/login', function(req, res){
               var hashedPassword = hash(password, salt); //Cresting hash based password given at login time
               if(hashedPassword === dbString){
                   //Setting session
-                //   req.session.auth = {userId:  result.rows[0].id};
-                  res.send("Login successful");
+                  req.session.auth = {userId:  result.rows[0].id};
+                  res.send("Login successful" + req.session.auth.userId.toString());
               }
               else{
                   res.status(403).send("Username or password is incorrect");
