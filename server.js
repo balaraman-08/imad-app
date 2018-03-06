@@ -105,26 +105,34 @@ app.post('/create-user', function(req, res){
    
 });
 
-// app.post('/login', function(req, res){
-//     var name = req.body.username;
-//     var password = req.body.password;
-//     var salt = crypto.randomBytes(128).toString('hex');
-//     var dbString = hash(password, salt);
-//     pool.query('SELECT * FROM "user2" WHERE username = $1', [name], function(err, result){
-//       if(err){
-//           res.status(500).send(err.toString());
-//       }
-//       else{
-//           if (result.rows.length === 0){
-//               res.status(403).send("Username or password is incorrect");
-//           }
-//           else{
-              
-//           }
-//           res.send("User created successfully: " + name);
-//       }
-//   });
-// });
+app.post('/login', function(req, res){
+    var name = req.body.username;
+    var password = req.body.password;
+
+    pool.query('SELECT * FROM "user2" WHERE username = $1', [name], function(err, result){
+      if(err){
+          res.status(500).send(err.toString());
+      }
+      else{
+          if (result.rows.length === 0){
+              res.status(403).send("Username or password is incorrect");
+          }
+          else{
+              //Matching the password
+              var dbString = result.rows.password;
+              var salt = dbString.split('$')[2];
+              var hashedPassword = hash(password, salt); //Cresting hash based password given at login time
+              if(hashedPassword === dbString){
+                  res.send("Login successful");
+              }
+              else{
+                  res.status(403).send("Username or password is incorrect");
+              }
+          }
+          res.send("User created successfully: " + name);
+      }
+  });
+});
 
 app.get('/articles/:articleName', function(req, res){
     console.log(req.params.articleName);
