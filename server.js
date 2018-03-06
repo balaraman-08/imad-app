@@ -155,27 +155,6 @@ app.get('/articles/:articleName', function(req, res){
     });
 });
 
-var count = 0;
-
-app.get('/counter', function (req, res) {
-    count = count+1;
-    res.send(count.toString());
-});
-
-
-var names = [];
-
-app.get('/submit', function(req, res){
-   
-   //Getting the name
-   var name = req.query.name;
-   names.push(name);
-   
-   //Respond with JSON
-   res.send(JSON.stringify(names));
-    
-});
-
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
