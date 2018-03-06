@@ -80,7 +80,7 @@ app.get('/test-db', function(req, res){
 
 function hash(input, salt){
     var hashedString = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
-    return hashedString.toString('hex');
+    return ["pbkdf2S", "10000", salt, hashedString.toString('hex')].join('$');
 }
 
 app.get('/hash/:password', function(req, res){
@@ -104,6 +104,27 @@ app.post('/create-user', function(req, res){
   });
    
 });
+
+// app.post('/login', function(req, res){
+//     var name = req.body.username;
+//     var password = req.body.password;
+//     var salt = crypto.randomBytes(128).toString('hex');
+//     var dbString = hash(password, salt);
+//     pool.query('SELECT * FROM "user2" WHERE username = $1', [name], function(err, result){
+//       if(err){
+//           res.status(500).send(err.toString());
+//       }
+//       else{
+//           if (result.rows.length === 0){
+//               res.status(403).send("Username or password is incorrect");
+//           }
+//           else{
+              
+//           }
+//           res.send("User created successfully: " + name);
+//       }
+//   });
+// });
 
 app.get('/articles/:articleName', function(req, res){
     console.log(req.params.articleName);
