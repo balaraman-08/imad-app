@@ -1,4 +1,5 @@
 console.log('Loaded!');
+var request1 = require('request');
 
 
 var submit = document.getElementById('submit_btn');
@@ -39,7 +40,7 @@ submit.onclick = function(){
     // request.setRequestHeader('Content-Type', 'application/json');
     // request.send();
     
-    request(requestContent, function (error, response) {
+    request1(requestContent, function (error, response) {
                 console.log(error,response.body);
                 return;
             });
