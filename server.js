@@ -112,6 +112,7 @@ app.post('/create-user', function(req, res){
 });
 
 app.post('/login', function(req, res){
+    console.log("Login block");
     var name = req.body.username;
     var password = req.body.password;
 
