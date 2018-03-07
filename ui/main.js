@@ -28,5 +28,5 @@ submit.onclick = function(){
     
     request.open('POST', "http://balaramanmuthupandi.imad.hasura-app.io/login", true);
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(null);
+    // request.send(null);
 };
