@@ -1,5 +1,4 @@
 console.log('Loaded!');
-var request1 = require('request');
 
 
 var submit = document.getElementById('submit_btn');
@@ -27,21 +26,7 @@ submit.onclick = function(){
     console.log(username);
     console.log(password);
     
-    var requestContent = {
-                uri: "http://balaramanmuthupandi.imad.hasura-app.io/login",
-                body: JSON.stringify({"username": username, "password": password}),
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-    
-    // request.open('POST', "http://balaramanmuthupandi.imad.hasura-app.io/login", true);
-    // request.setRequestHeader('Content-Type', 'application/json');
-    // request.send();
-    
-    request1(requestContent, function (error, response) {
-                console.log(error,response.body);
-                return;
-            });
+    request.open('POST', "http://balaramanmuthupandi.imad.hasura-app.io/login", true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({"username": username, "password": password}));
 };
