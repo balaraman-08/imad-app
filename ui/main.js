@@ -26,7 +26,21 @@ submit.onclick = function(){
     console.log(username);
     console.log(password);
     
-    request.open('POST', "http://balaramanmuthupandi.imad.hasura-app.io/login", true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({"username": username, "password": password}));
+    var requestContent = {
+                uri: "http://balaramanmuthupandi.imad.hasura-app.io/login",
+                body: JSON.stringify({"username": username, "password": password}),
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+    
+    // request.open('POST', "http://balaramanmuthupandi.imad.hasura-app.io/login", true);
+    // request.setRequestHeader('Content-Type', 'application/json');
+    // request.send();
+    
+    request(requestContent, function (error, response) {
+                console.log(error,response.body);
+                return;
+            });
 };
