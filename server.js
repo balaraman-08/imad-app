@@ -117,14 +117,17 @@ app.post('/login', function(req, res){
 
     pool.query('SELECT * FROM "user2" WHERE username = $1', [name], function(err, result){
       if(err){
+          console.log("Error");
           res.status(500).send(err.toString());
       }
       else{
           if (result.rows.length === 0){
+              console.log("Not found");
               res.status(403).send("Username or password is incorrect");
           }
           else{
               //Matching the password
+              console.log("Pass match");
               var dbString = result.rows[0].password;
               var salt = dbString.split('$')[2];
               var hashedPassword = hash(password, salt); //Cresting hash based password given at login time
@@ -135,6 +138,7 @@ app.post('/login', function(req, res){
                   console.log('Logged in');
               }
               else{
+                  console.log("Problem");
                   res.status(403).send("Username or password is incorrect");
               }
           }
