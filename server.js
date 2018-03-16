@@ -117,6 +117,7 @@ app.post('/create-user', function(req, res){
 app.post('/login', function(req, res){
     console.log("Login block");
     var name = req.body.username;
+    console.log(name);
     var password = req.body.password;
 
     pool.query('SELECT * FROM "user2" WHERE username = $1', [name], function(err, result){
